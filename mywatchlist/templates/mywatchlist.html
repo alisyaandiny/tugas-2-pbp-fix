@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1>Tugas 3 PBP/PBD</h1>
+
+  <table>
+    <tr>
+      <th>Watched</th>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>Review</th>
+    </tr>
+    
+    {% for mywatchlist in watchlist %}
+    <tr>
+        <th>{{mywatchlist.watched}}</th>
+        <th>{{mywatchlist.title}}</th>
+        <th>{{mywatchlist.rating}}</th>
+        <th>{{mywatchlist.release_date}}</th>
+        <th>{{mywatchlist.review}}</th>
+
+    </tr>
+{% endfor %}
+  </table>
+
+ {% endblock content %}

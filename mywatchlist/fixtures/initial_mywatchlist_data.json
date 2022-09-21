@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 1,
+        "fields": {
+            "watched": true,
+            "title": "La La Land",
+            "rating": 5,
+            "release_date": "2016-12-9",
+            "review": "Awalnya bikin seneng, tapi endingnya sedih."
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 2,
+        "fields": {
+            "watched": true,
+            "title": "Purple Hearts",
+            "rating": 4,
+            "release_date": "2022-7-5",
+            "review": "Seru banget deh, terharu."
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 3,
+        "fields": {
+            "watched": false,
+            "title": "Morbius",
+            "rating": 1,
+            "release_date": "2013-9-15",
+            "review": "-"
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 4,
+        "fields": {
+            "watched": false,
+            "title": "Windfall",
+            "rating": 1,
+            "release_date": "2021-12-18",
+            "review": "-"
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 5,
+        "fields": {
+            "watched": true,
+            "title": "Five Feet Apart",
+            "rating": 5,
+            "release_date": "2018-3-11",
+            "review": "Banjirrr."
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 6,
+        "fields": {
+            "watched": true,
+            "title": "The Nun",
+            "rating": 1,
+            "release_date": "2019-4-9",
+            "review": "-"
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 7,
+        "fields": {
+            "watched": true,
+            "title": "Tall Girl",
+            "rating": 3,
+            "release_date": "2020-7-16",
+            "review": "Biasa aja sih."
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 8,
+        "fields": {
+            "watched": false,
+            "title": "Charlie's Angels",
+            "rating": 1,
+            "release_date": "2009-3-15",
+            "review": "-"
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 9,
+        "fields": {
+            "watched": false,
+            "title": "Little Women",
+            "rating": 1,
+            "release_date": "2022-12-11",
+            "review": "-"
+        }
+    },
+    {
+        "model": "mywatchlist.MyWatchList",
+        "pk": 10,
+        "fields": {
+            "watched": true,
+            "title": "The Notebook",
+            "rating": 5,
+            "release_date": "2009-6-11",
+            "review": "Amazing."
+        }
+    }
+]
