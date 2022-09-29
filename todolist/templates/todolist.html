@@ -1,0 +1,120 @@
+{% extends 'base.html' %} {% block content %}
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+
+<style>
+    body {
+        background: rgb(246, 233, 250);
+        background: linear-gra(90deg, rgb(192, 211, 202) 0%, rgb(215, 215, 228) 34%, rgb(241, 211, 222) 75%, rgb(243, 245, 222) 100%);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+        font-family: 'Poppins', sans-serif;
+        /* text-align: center; */
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 5px;
+    }
+
+    h3 {
+        font-family: 'Poppins', sans-serif;
+        /* text-align: center; */
+        font-weight: 400;
+        color: #ffffff;
+        letter-spacing: 5px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    button {
+        font-family: 'Poppins', sans-serif;
+        margin: auto;
+        background-color: #ffffff;
+        padding: 15px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    table {
+        /* table-layout: auto; */
+        width: 90%;
+        /* margin-top: 40px; */
+
+    }
+
+    table,
+    th,
+    td {
+        /* border: 1px solid black; */
+        border-collapse: separate;
+        margin: 15px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 100px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+
+    th {
+        background-color: #fff8fd;
+        font-family: 'Poppins', sans-serif;
+    }
+
+</style>
+<center><h3>Welcome back, {{userName}}!</h3></center>
+<br>
+<center><h1> ☁ TO DO LIST  ☁</h1></center>
+
+<center><table>
+    <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Change Status</th>
+        <th>Delete Task</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for todo in todolist_data %}
+    <tr>
+        <!-- <th>{{todo.user}}</th> -->
+        <th style="font-weight: normal">{{todo.date}}</th>
+        <th style="font-weight: normal">{{todo.title}}</th>
+        <th style="font-weight: normal">{{todo.description}}</th>
+        {% if todo.is_finished %}
+        <th style="font-weight: normal">Completed</th>
+        {% endif %}
+        {% if not todo.is_finished %}
+        <th style="font-weight: normal">Not Completed</th>
+        {% endif %}
+        <th>
+            <a href="{% url 'todolist:toggler' todo.id %}"><button>Change</button></a>
+        </th>
+        <th>
+            <a href="{% url 'todolist:delete_task' todo.id %}"><button>Delete</button></a>
+        </th>
+    </tr>
+    {% endfor %}
+</table></center>
+
+<br>
+<br>
+
+<!-- <h5>Sesi terakhir login: {{ last_login }}</h5> -->
+<center><button><a href="{% url 'todolist:create_task' %}">Create New Task</a></button></center>
+<br>
+<center><button><a href="{% url 'todolist:logout' %}">Logout</a></button></center>
+
+{% endblock content %}
