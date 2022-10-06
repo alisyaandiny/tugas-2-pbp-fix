@@ -33,8 +33,8 @@ Kekurangan: Halaman akan menjadi berantakan ketika file CSS gagal dipanggil oleh
 
 
 # Jelaskan tag HTML5 yang kamu ketahui. #
-<head> : mendefinisikan head dari document
-'''<body>''' : mendefinisikan body dari document
+```<head>``` : mendefinisikan head dari document
+```<body>``` : mendefinisikan body dari document
 <title> : mengatur judul halaman
 <button> : membuat button yang dapat diklik
 <table> : membuat tabel
