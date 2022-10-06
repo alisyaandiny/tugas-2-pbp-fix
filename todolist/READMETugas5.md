@@ -34,17 +34,28 @@ Kekurangan: Halaman akan menjadi berantakan ketika file CSS gagal dipanggil oleh
 
 # Jelaskan tag HTML5 yang kamu ketahui. #
 ```<head>``` : mendefinisikan head dari document
+ 
 ```<body>``` : mendefinisikan body dari document
-<title> : mengatur judul halaman
-<button> : membuat button yang dapat diklik
-<table> : membuat tabel
-<h1> hingga <h6> : mencetak tulisan sebagai header (semakin kecil angka, semakin besar ukuran yang dicetak)
-<a> : me-refer pada link web tujuan
-<p> : mencetak teks dalam bentuk paragraf
-<hr> : menampilkan garis horizontal
-<br> : memberikan line break atau jeda kosong
-<tr> : mendefinisikan baris pada tabel
-<td> : mendefinisikan kolom pada tabel
+ 
+```<title>``` : mengatur judul halaman
+ 
+```<button>``` : membuat button yang dapat diklik
+ 
+```<table>``` : membuat tabel
+ 
+```<h1> hingga <h6>``` : mencetak tulisan sebagai header (semakin kecil angka, semakin besar ukuran yang dicetak)
+ 
+```<a>``` : me-refer pada link web tujuan
+ 
+```<p>``` : mencetak teks dalam bentuk paragraf
+ 
+```<hr>``` : menampilkan garis horizontal
+ 
+```<br>``` : memberikan line break atau jeda kosong
+ 
+```<tr>``` : mendefinisikan baris pada tabel
+ 
+```<td>``` : mendefinisikan kolom pada tabel
  
  
 # Jelaskan tipe-tipe CSS selector yang kamu ketahui. #
@@ -52,34 +63,39 @@ Kekurangan: Halaman akan menjadi berantakan ketika file CSS gagal dipanggil oleh
 1. Tag Selector
   
 Selector yang akan memilih elemen berdasarkan nama tagnya.
-  
+ 
+ ```shell
 p {
     color: blue;
 }
+  ```
   
-  
+ 
 2. ID Selector
   
 Selector yang akan memilih elemen berdasarkan nama class yang diberikan dan hanya dapat digunakan pada tepat satu inisiasi elemen. ID Selector diawali dengan tanda pagar (#).
   
+ ```shell
 #header {
     background: teal;
     color: white;
     height: 100px;
     padding: 50px;
 }
-
+ ```
   
+ 
 3. Class Selector
   
 Hampir serupa dengan ID Selector, namun dapat digunakan oleh beberapa elemen. Class Selector diawali dengan tanda titik (.).
-  
+  ```shell
 .pink {
   color: white;
   background: pink;
   padding: 5px;
 }
-
+```
+ 
 
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas. #
 
