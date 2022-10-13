@@ -7,18 +7,18 @@
 
 {% endblock meta %}
 
-<meta name="viewport", content="width=device-width, initial-scale=1.0">
+<meta name="viewport" , content="width=device-width, initial-scale=1.0">
 
 {% block content %}
 
 <header>
     <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Alsyi's Task Manager</a>
-        </button>
-      </div>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Alsyi's Task Manager</a>
+            </button>
+        </div>
     </nav>
-  </header>
+</header>
 
 <style>
     body {
@@ -86,50 +86,177 @@
         background-color: #fff8fd;
         font-family: 'Poppins', sans-serif;
     }
-
 </style>
-<center><h3>Welcome back, {{userName}}!</h3></center>
+<center>
+    <h3>Welcome back, {{userName}}!</h3>
+</center>
 <br>
-<center><h1> ☁ TO DO LIST  ☁</h1></center>
+<center>
+    <h1> ☁ TO DO LIST ☁</h1>
+</center>
 
-<center><table>
-    <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Change Status</th>
-        <th>Delete Task</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for todo in todolist_data %}
-    <tr>
-        <!-- <th>{{todo.user}}</th> -->
-        <th style="font-weight: normal">{{todo.date}}</th>
-        <th style="font-weight: normal">{{todo.title}}</th>
-        <th style="font-weight: normal">{{todo.description}}</th>
-        {% if todo.is_finished %}
-        <th style="font-weight: normal">Completed</th>
-        {% endif %}
-        {% if not todo.is_finished %}
-        <th style="font-weight: normal">Not Completed</th>
-        {% endif %}
-        <th>
-            <a href="{% url 'todolist:toggler' todo.id %}"><button>Change</button></a>
-        </th>
-        <th>
-            <a href="{% url 'todolist:delete_task' todo.id %}"><button>Delete</button></a>
-        </th>
-    </tr>
-    {% endfor %}
-</table></center>
+<center>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="card-body">
+        </div>
+      
+      </div>
+</center>
 
 <br>
 <br>
 
 <!-- <h5>Sesi terakhir login: {{ last_login }}</h5> -->
-<center><button><a href="{% url 'todolist:create_task' %}">Create New Task</a></button></center>
 <br>
 <center><button><a href="{% url 'todolist:logout' %}">Logout</a></button></center>
+<br>
+<center><button type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add task
+</button></center>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="task-form">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input type="text" class="form-control" id="task-title">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Description:</label>
+              <textarea class="form-control" id="task-desc"></textarea>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" >Submit</button>
+            </div>
+
+          </form>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $.get("/todolist/json/", function (data) {
+                console.log(data)
+                var element = document.getElementById("table")
+                element.innerHTML+="<tbody>"
+                for (let index = 0; index < data.length; index++) {
+                    const todo = data[index];
+                    element.innerHTML += "<tr>"
+                    element.innerHTML += "<th>"
+                    element.innerHTML += todo.fields.date
+                    element.innerHTML += "</th>"
+                    element.innerHTML += "<th>"
+                    element.innerHTML += todo.fields.title
+                    element.innerHTML += "</th>"
+                    element.innerHTML += "<th>"
+                    element.innerHTML += todo.fields.description
+                    element.innerHTML += "</th>"
+                    element.innerHTML += "</tr>"
+                }
+            });
+        });
+    });
+</script> -->
+
+<script>
+    // using jQuery
+  function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie != '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+  if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+   </script>
+  
+<script>
+    $(document).ready(function() {
+      $('#task-form').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+          url: "/todolist/add/",
+          type: "POST",
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+          },
+          data: {
+            title : $('#task-title').val(),
+            description : $("#task-desc").val()
+          },
+          success: function(){
+            $('.col').remove();
+            $('#exampleModal').modal('hide');
+            $.get('/todolist/json', function (data) {
+data.map((singleData) =>
+    $('#card-body').append(`<div class="col">
+   <div class="card" style="width: 18rem;">
+     <div class="card-body">
+
+       <h5 class="card-title">${singleData.fields.user}</h5>
+       <h6 class="card-subtitle mb-2 text-muted">${singleData.fields.date}</h6>
+       <h6 class="card-subtitle mb-2 text-muted">${singleData.fields.title}</h6>
+       <h6 class="card-subtitle mb-2 text-muted">${singleData.fields.is_finished}</h6>
+       <p class="card-text">${singleData.fields.description}</p>
+       <a href="/todolist/marker/${singleData.pk}   " class="card-link"><button>Update</button></a>
+       <a href="/todolist/delete/${singleData.pk}" class="card-link"><button>Delete</button></a>
+     </div>
+   </div>
+ </div>`)
+);
+});
+          },
+          error: function(data){
+            console.log(data)
+            alert("error")
+          }
+        });
+      });
+    })
+  </script>
+
+  <script>
+    $(document).ready(function () {
+
+$.get('/todolist/json', function (data) {
+data.map((singleData) =>
+    $('#card-body').append(`<div class="col">
+   <div class="card" style="width: 18rem;">
+     <div class="card-body">
+
+       <h5 class="card-title">${singleData.fields.user}</h5>
+       <h6 class="card-subtitle mb-2 text-muted">${singleData.fields.date}</h6>
+       <h6 class="card-subtitle mb-2 text-muted">${singleData.fields.title}</h6>
+       <h6 class="card-subtitle mb-2 text-muted">${singleData.fields.is_finished}</h6>
+       <p class="card-text">${singleData.fields.description}</p>
+       <a href="/todolist/marker/${singleData.pk}" class="card-link"><button>Update</button></a>
+       <a href="/todolist/delete/${singleData.pk}" class="card-link"><button>Delete</button></a>
+     </div>
+   </div>
+ </div>`)
+);
+});
+});
+  </script>
 
 {% endblock content %}
